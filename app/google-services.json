@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "70167887095",
+    "project_id": "catchat-2738f",
+    "storage_bucket": "catchat-2738f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70167887095:android:41d9914e9f2417af6327f2",
+        "android_client_info": {
+          "package_name": "com.david.catChat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70167887095-v6vrgqvne28la80nfok4oajht0ftcbun.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ-KX8Q34nnB1CIDxkBBo93zVBuLuFoQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70167887095-v6vrgqvne28la80nfok4oajht0ftcbun.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

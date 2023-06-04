@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">catChat</string>
+
+    <!--Sign In Screen-->
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="account_creation">Doesn\'t have an account?</string>
+    <string name="create_an_account">Create one</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <!--Sign Up Screen-->
+    <string name="already_have_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+
+    <!--Tabs-->
+    <string name="home">Home</string>
+    <string name="people">People</string>
+
+    <!--Messages -->
+    <string name="type_something">Type something</string>
+
+    <!--Home Screen -->
+    <string name="empty_chats">You don\'t have any conversation, start one</string>
+
+    <!--People Screen-->
+    <string name="empty_people">There is no people in the app, call your friends to download it</string>
+
+    <!--Errors-->
+    <string name="error_sign_up">We couldn\'t  sign you up, please try again</string>
+    <string name="error_sign_in">We couldn\'t  sign you in, check your email and password</string>
+    <string name="error_sign_in_google">We couldn\'t sign you in with google, please try again </string>
+    <string name="error_message">We couldn\'t send the message, please try again</string>
+
+    <!--ID-->
+    <!--<string name="google_web_client_id">703500828649-9utv0544cbom3ge153d7ahe7v5pr5j6g.apps.googleusercontent.com</string>-->
+    <string name="google_web_client_id">70167887095-v6vrgqvne28la80nfok4oajht0ftcbun.apps.googleusercontent.com</string>
+</resources>
+
