@@ -16,7 +16,8 @@ import java.util.*
 
 class ChatViewModel(
     private val sender: User,
-    private val receiver: String,
+    private val receiverId: String, // ID del receptor
+    private val receiverName: String, // nombre del receptor
     private val chatId: String?,
     private val db: FirestoreService
 ) : ViewModel() {
@@ -75,7 +76,8 @@ class ChatViewModel(
                     id = "",
                     listOf(message),
                     sender = sender.id,
-                    receiver = receiver,
+                    receiver = receiverId, // usa el ID del receptor aquí
+                    receiverName = receiverName, // usa el nombre del receptor aquí
                     startDate = currentDate
                 )
 
@@ -125,13 +127,14 @@ class ChatViewModel(
 
 class ChatViewModelFactory(
     private val sender: User,
-    private val receiver: String,
+    private val receiverId: String, // ID del receptor
+    private val receiverName: String, // nombre del receptor
     private val chatId: String?,
     private val db: FirestoreService
 ) :
     ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return ChatViewModel(sender, receiver, chatId, db) as T
+        return ChatViewModel(sender, receiverId, receiverName, chatId, db) as T
     }
 }

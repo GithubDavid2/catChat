@@ -51,9 +51,3 @@ fun MessageForm(
 
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun MessageFormPreview() {
-    MessageForm(message =  "", onChangeMessage = {}, onSendMessage = {})
-}

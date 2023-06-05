@@ -65,15 +65,12 @@ fun ChatScreen(
 
             }
         }
-
-
-
     }
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun ChatScreenPreview() {
-
     ChatScreen()
-}
+}*/

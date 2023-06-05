@@ -4,22 +4,39 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import java.util.*
 
-
 data class Chat(
     val id: String,
     val messages: List<Message>,
     val sender: String,
-    val receiver: String,
+    val receiver: String, // este sigue siendo el ID del receptor
+    val receiverName: String, // nuevo campo para el nombre del receptor
     val startDate: Date
-) {
+)
+{
     companion object {
         fun DocumentSnapshot.toChat(): Chat? {
             return try {
-                val messages = get("messages") as List<Message>
+                val messagesMap = get("messages") as? List<HashMap<String, Any>>
+                val messages = messagesMap?.mapNotNull { map ->
+                    try {
+                        Message(
+                            id = map["id"] as String,
+                            content = map["content"] as String,
+                            date = map["date"] as Date,
+                            read = map["read"] as Boolean,
+                            name = map["name"] as String,
+                            isMine = map["isMine"] as Boolean
+                        )
+                    } catch (e: Exception) {
+                        // Si ocurre un error al convertir un mensaje, simplemente lo saltamos.
+                        null
+                    }
+                } ?: emptyList()
                 val sender = getString("sender")!!
                 val receiver = getString("receiver")!!
+                val receiverName = getString("receiverName")!!
                 val startDate = getDate("startDate")!!
-                Chat(id, messages, sender, receiver, startDate)
+                Chat(id, messages, sender, receiver, receiverName, startDate)
 
             } catch (e: Exception) {
                 null
@@ -34,17 +51,6 @@ data class Chat(
             }
         }
 
-        private const val TAG = "Chat"
+        /*private const val TAG = "Chat"*/
     }
-
 }
-
-val mockChats = listOf<Chat>(
-    Chat(id = "1", messages = mockMessages, sender = "1", receiver = "2", startDate = Date()),
-    Chat(id = "2", messages = mockMessages, sender = "1", receiver = "3", startDate = Date()),
-    Chat(id = "3", messages = mockMessages, sender = "1", receiver = "4", startDate = Date()),
-    Chat(id = "4", messages = mockMessages, sender = "1", receiver = "5", startDate = Date()),
-    Chat(id = "5", messages = mockMessages, sender = "1", receiver = "6", startDate = Date()),
-)
-
-

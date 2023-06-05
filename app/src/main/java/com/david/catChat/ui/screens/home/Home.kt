@@ -3,7 +3,6 @@ package com.david.catChat.ui.screens.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.david.catChat.data.RequestState
 import com.david.catChat.ui.components.Chat
@@ -16,7 +15,7 @@ import com.david.catChat.viewmodels.HomeViewModelFactory
 
 @Composable
 fun HomeScreen(
-    onChatClick: (String, String) -> Unit,
+    onChatClick: (String, String, String) -> Unit,
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel = viewModel(factory = HomeViewModelFactory(db = FirestoreService)),
 ) {
@@ -29,19 +28,12 @@ fun HomeScreen(
             ) {
                 if (it != null) {
                     Chat(
-                        name = it.receiver,
-                        lastMessage = it.messages.first().content,
-                        date = it.messages.first().date.toString(),
-                        onClick = { onChatClick(it.id, it.receiver) })
+                        name = it.receiverName,
+                        lastMessage = it.messages.firstOrNull()?.content ?: "No hay mensajes",
+                        date = it.messages.firstOrNull()?.date?.toString() ?: "No hay fecha",
+                        onClick = { onChatClick(it.id, it.receiver, it.receiverName) } // pasa el nombre del receptor
+                    )
                 }
             }
         }
-
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen(onChatClick = {_, _ -> })
 }

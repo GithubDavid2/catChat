@@ -43,7 +43,7 @@ fun HomeTabs(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Firebase Chat", style = MaterialTheme.typography.h6)
+                Text(text = "cat Chat", style = MaterialTheme.typography.h6)
                 IconButton(onClick = onLogout) {
                     Icon(imageVector = Icons.Filled.ExitToApp, contentDescription = null)
                 }

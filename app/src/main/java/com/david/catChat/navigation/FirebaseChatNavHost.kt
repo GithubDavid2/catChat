@@ -90,12 +90,12 @@ fun HomeNavHost(
         NavHost(navController = navController, startDestination = Home.route) {
             composable(Home.route) {
                 HomeScreen(
-                    onChatClick = { chatId, receiverId -> navController.navigateToChat(chatId, receiverId) },
+                    onChatClick = { chatId, receiverId, receiverName -> navController.navigateToChat(chatId, receiverId, receiverName) },
                 )
             }
             composable(People.route) {
                 PeopleScreen(
-                    onSelectPeople = {_, receiverId -> navController.navigateToChat(null, receiverId) }
+                    onSelectPeople = {_, receiverId, receiverName -> navController.navigateToChat(null, receiverId, receiverName) }
                 )
             }
             composable(
@@ -104,10 +104,12 @@ fun HomeNavHost(
             ) { navBackStackEntry ->
                 val chatId = navBackStackEntry.arguments?.getString(Chats.chatIdArg)
                 val receiverId = navBackStackEntry.arguments?.getString(Chats.receiverIdArg)
+                val receiverName = navBackStackEntry.arguments?.getString(Chats.receiverNameArg)
                 val chatViewModel =
                     ChatViewModel(
                         chatId = chatId,
-                        receiver = receiverId ?: "",
+                        receiverId = receiverId ?: "",
+                        receiverName = receiverName ?: "", // pasa el nombre del receptor
                         db = FirestoreService,
                         sender = authViewModel.state.userData ?: User(id = "", name = "")
                     )
@@ -154,11 +156,11 @@ fun NavHostController.navigateToTop(route: String) {
     }
 }
 
-fun NavHostController.navigateToChat(chatId: String?, receiverId: String?) {
+fun NavHostController.navigateToChat(chatId: String?, receiverId: String?, receiverName: String) {
     if(chatId != null){
-        this.navigate("${Chats.route}?receiver_id={${receiverId}}&chat_id={${chatId}}")
+        this.navigate("${Chats.route}?receiver_id=$receiverId&receiver_name=$receiverName&chat_id=$chatId")
     }else {
-        this.navigate("${Chats.route}?receiver_id={${receiverId}}")
+        this.navigate("${Chats.route}?receiver_id=$receiverId&receiver_name=$receiverName")
     }
-
 }
+

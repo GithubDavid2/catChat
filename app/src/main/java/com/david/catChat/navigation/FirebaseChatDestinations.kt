@@ -46,14 +46,16 @@ object Chats : FirebaseChatDestinations, HomeDestinations {
     override val icon: ImageVector = Icons.Filled.Send
     const val chatIdArg = "chat_id"
     const val receiverIdArg = "receiver_id"
-    val routeWithArgs = "${route}?receiver_id={${receiverIdArg}}&chat_id={${chatIdArg}}"
+    const val receiverNameArg = "receiver_name"
+    val routeWithArgs = "${route}?receiver_id={${receiverIdArg}}&chat_id={${chatIdArg}}&receiver_name={${receiverNameArg}}"
     val arguments = listOf(
         navArgument(chatIdArg) {
             nullable = true
             type = NavType.StringType
             defaultValue = null
         },
-        navArgument(receiverIdArg) { type = NavType.StringType }
+        navArgument(receiverIdArg) { type = NavType.StringType },
+        navArgument(receiverNameArg) { type = NavType.StringType } // agrega esto
     )
 }
 
